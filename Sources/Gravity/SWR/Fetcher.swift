@@ -8,17 +8,20 @@
 import Foundation
 
 /// General Fetcher type
-public class Fetcher<Fetchable, Decoded> where Fetchable: Hashable {
+open class Fetcher<Fetchable, Decoded> where Fetchable: Hashable {
+  
+    public init() {}
+  
     /// Implement encode function to convert Decoded type to Data
-    public func encode(object: Decoded) throws -> Data {
+    open func encode(object: Decoded) throws -> Data {
         throw GravityError.EncodeError
     }
     /// Implement decode function to convert data to any type
-    public func decode(data: Data) throws -> Decoded {
+  open func decode(data: Data) throws -> Decoded {
         throw GravityError.DecodeError
     }
     /// Implement fetch function to fetch from the network
-    public func fetch(location: Fetchable, callback: @escaping (Data?, Error?) -> Void) throws {
+  open func fetch(location: Fetchable, callback: @escaping (Data?, Error?) -> Void) throws {
         throw GravityError.FetchError
     }
 }
